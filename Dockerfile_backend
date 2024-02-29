@@ -1,0 +1,17 @@
+# Use the official Node.js image as the base image for backend
+FROM node:latest as backend
+
+# Set the working directory for backend
+WORKDIR /app/quirknotes/backend
+
+# Copy backend package files
+COPY quirknotes/backend/package*.json ./
+
+# Install backend dependencies
+RUN npm install
+
+# Copy frontend source code
+COPY quirknotes/backend ./
+
+# Build frontend
+CMD ["npm", "run", "dev"]
